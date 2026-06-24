@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eliminar País - Maestros RRHH</title>
+    <link rel="stylesheet" href="/SystemRRHH/vista/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .crud-panel {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .crud-panel .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+        .crud-panel .form-group {
+            margin-bottom: 15px;
+        }
+        .crud-panel label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: 600;
+            font-size: 14px;
+        }
+        .crud-panel .form-input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .crud-buttons {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            margin-top: 15px;
+            padding-top: 15px;
+            border-top: 2px solid #dee2e6;
+        }
+        .crud-buttons .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .crud-buttons .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+        }
+        .btn-eliminar { background: #dc3545; color: white; }
+        .btn-secondary { background: #6c757d; color: white; }
+
+        .nav-panel {
+            float: left;
+            width: 15%;
+            height: auto;
+            padding: 20px 0;
+        }
+        .nav-panel a {
+            display: block;
+            padding: 10px 15px;
+            margin: 5px 0;
+            color: #333;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: all 0.3s;
+        }
+        .nav-panel a:hover {
+            background: #007bff;
+            color: white;
+        }
+        .nav-panel a.active {
+            background: #007bff;
+            color: white;
+        }
+        .content-right {
+            float: right;
+            width: 83%;
+        }
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <nav class="sidebar">
+            <h2>Sistema de Gestión</h2>
+            <ul class="menu-list">
+                <li class="menu-item">
+                    <a href="/SystemRRHH/vista/dashboard.html">
+                        <span class="icon">
+                            <img src="/SystemRRHH/vista/Iconos/Dashboard.png" alt="Dashboard" class="menu-icon">
+                        </span>
+                        Administración
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a href="/SystemRRHH/vista/maestros.html">
+                        <span class="icon">
+                            <img src="/SystemRRHH/vista/Iconos/Maestros.png" alt="Maestros" class="menu-icon">
+                        </span>
+                        Maestros
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/SystemRRHH/vista/reclutamiento.html">
+                        <span class="icon">
+                            <img src="/SystemRRHH/vista/Iconos/Reclutamiento.png" alt="Reclutamiento" class="menu-icon">
+                        </span>
+                        Reclutamiento
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/SystemRRHH/vista/contratacion.html">
+                        <span class="icon">
+                            <img src="/SystemRRHH/vista/Iconos/Contratacion.png" alt="Contratación" class="menu-icon">
+                        </span>
+                        Contratación
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/SystemRRHH/vista/asistencia.html">
+                        <span class="icon">
+                            <img src="/SystemRRHH/vista/Iconos/Asistencia.png" alt="Asistencia" class="menu-icon">
+                        </span>
+                        Asistencia
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/SystemRRHH/vista/vacaciones.html">
+                        <span class="icon">
+                            <img src="/SystemRRHH/vista/Iconos/Vacaciones.png" alt="Vacaciones" class="menu-icon">
+                        </span>
+                        Vacaciones
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/SystemRRHH/vista/reposos.html">
+                        <span class="icon">
+                            <img src="/SystemRRHH/vista/Iconos/Reposo.png" alt="Reposos" class="menu-icon">
+                        </span>
+                        Reposos
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/SystemRRHH/vista/permisos.html">
+                        <span class="icon">
+                            <img src="/SystemRRHH/vista/Iconos/Permiso.png" alt="Permisos" class="menu-icon">
+                        </span>
+                        Permisos
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="/SystemRRHH/vista/configuracion.html">
+                        <span class="icon">
+                            <img src="/SystemRRHH/vista/Iconos/Configuracion.png" alt="Configuración" class="menu-icon">
+                        </span>
+                        Configuración
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <main class="main-content clearfix">
+            <header class="header">
+                <h1>Eliminar País</h1>
+                <div class="user-profile"><span>Juan Pérez</span><div class="user-avatar">JP</div></div>
+            </header>
+
+            <div class="nav-panel">
+                <center>
+                    <h4 style="margin-bottom: 15px;">Operaciones</h4>
+                    <a href="insert_pais.html">📝 Registrar</a>
+                    <a href="select_pais.html">🔍 Consultar</a>
+                    <a href="update_pais.html">✏️ Actualizar</a>
+                    <a href="delete_pais.html" class="active">🗑️ Eliminar</a>
+                    <a href="maestro_pais.php">📋 Listado</a>
+                </center>
+            </div>
+
+            <div class="content-right">
+                <div class="section-card crud-panel">
+                    <h3>Eliminar País</h3>
+
+                    <form method="POST" onSubmit="return validar(this)" method="POST" action="/SystemRRHH/controlador/ctl_pais.php">
+                        <input type="hidden" name="eliminar" value="eliminar">
+                        
+                        <div class="form-grid">
+                            <div class="form-group">
+                                <label>Nombre del País a eliminar *</label>
+                                <input type="text" class="form-input" id="nombre" name="nombre" placeholder="Ej: Venezuela" required>
+                            </div>
+                        </div>
+
+                        <div class="crud-buttons">
+                            <button type="submit" class="btn btn-eliminar" onclick="return confirm('¿Estás seguro de eliminar este país?')">
+                                🗑️ Eliminar
+                            </button>
+                            <a href="/SystemRRHH/vista/maestro_pais.php" class="btn btn-secondary">
+                                ❌ Cancelar
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

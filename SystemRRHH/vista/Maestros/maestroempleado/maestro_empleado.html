@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Empleado - Maestros RRHH</title>
+    <link rel="stylesheet" href="/SystemRRHH/vista/css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <nav class="sidebar">
+            <h2>Sistema de Gestión</h2>
+            <ul class="menu-list">
+                <li class="menu-item"><a href="/SystemRRHH/vista/dashboard.html"><span class="icon"><img src="/SystemRRHH/vista/Iconos/Dashboard.png" alt="Dashboard" class="menu-icon"></span> Administración</a></li>
+                <li class="menu-item active"><a href="/SystemRRHH/vista/maestros.html"><span class="icon"><img src="/SystemRRHH/vista/Iconos/Maestros.png" alt="Maestros" class="menu-icon"></span> Maestros</a></li>
+                <li class="menu-item"><a href="/SystemRRHH/vista/reclutamiento.html"><span class="icon"><img src="/SystemRRHH/vista/Iconos/Reclutamiento.png" alt="Reclutamiento" class="menu-icon"></span> Reclutamiento</a></li>
+                <li class="menu-item"><a href="/SystemRRHH/vista/contratacion.html"><span class="icon"><img src="/SystemRRHH/vista/Iconos/Contratacion.png" alt="Contratación" class="menu-icon"></span> Contratación</a></li>
+                <li class="menu-item"><a href="/SystemRRHH/vista/asistencia.html"><span class="icon"><img src="/SystemRRHH/vista/Iconos/Asistencia.png" alt="Asistencia" class="menu-icon"></span> Asistencia</a></li>
+                <li class="menu-item"><a href="/SystemRRHH/vista/vacaciones.html"><span class="icon"><img src="/SystemRRHH/vista/Iconos/Vacaciones.png" alt="Vacaciones" class="menu-icon"></span> Vacaciones</a></li>
+                <li class="menu-item"><a href="/SystemRRHH/vista/reposos.html"><span class="icon"><img src="/SystemRRHH/vista/Iconos/Reposo.png" alt="Reposos" class="menu-icon"></span> Reposos</a></li>
+                <li class="menu-item"><a href="/SystemRRHH/vista/permisos.html"><span class="icon"><img src="/SystemRRHH/vista/Iconos/Permiso.png" alt="Permisos" class="menu-icon"></span> Permisos</a></li>
+                <li class="menu-item"><a href="/SystemRRHH/vista/configuracion.html"><span class="icon"><img src="/SystemRRHH/vista/Iconos/Configuracion.png" alt="Configuración" class="menu-icon"></span> Configuración</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <header class="header">
+                <h1>👥 Maestro: Empleado</h1>
+                <div class="user-profile"><span>Juan Pérez</span><div class="user-avatar">JP</div></div>
+            </header>
+
+            <!-- Formulario para agregar nuevo empleado CON VALIDACIONES -->
+            <div class="section-card">
+                <h3>📝 Agregar nuevo empleado</h3>
+                
+                <!-- Mensaje de error general -->
+                <div id="error-general"></div>
+
+                <form id="form-empleado">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Código *</label>
+                            <input type="text" class="form-input" name="codigo" placeholder="Ej: EMP004">
+                        </div>
+                        <div class="form-group">
+                            <label>Nombre Completo *</label>
+                            <input type="text" class="form-input" name="nombre" placeholder="Ej: Luis Fernández">
+                        </div>
+                        <div class="form-group">
+                            <label>Email *</label>
+                            <input type="email" class="form-input" name="email" placeholder="Ej: lfernandez@empresa.com">
+                        </div>
+                        <div class="form-group">
+                            <label>Teléfono</label>
+                            <input type="text" class="form-input" name="telefono" placeholder="Ej: 0412-9876543">
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha Ingreso</label>
+                            <input type="date" class="form-input" name="fecha_ingreso">
+                        </div>
+                        <div class="form-group">
+                            <label>Cargo</label>
+                            <input type="text" class="form-input" name="cargo" placeholder="Ej: Analista">
+                        </div>
+                        <div class="form-group">
+                            <label>Departamento</label>
+                            <select class="form-input" name="departamento">
+                                <option value="Tecnología">Tecnología</option>
+                                <option value="Recursos Humanos">Recursos Humanos</option>
+                                <option value="Finanzas">Finanzas</option>
+                                <option value="Marketing">Marketing</option>
+                                <option value="Ventas">Ventas</option>
+                                <option value="Administración">Administración</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Estatus</label>
+                            <select class="form-input" name="estatus">
+                                <option value="Activo">Activo</option>
+                                <option value="Inactivo">Inactivo</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="text-align: right; margin-top: 15px;">
+                        <button type="reset" class="btn btn-secondary" style="margin-right: 10px;">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Guardar Empleado</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Listado de empleados -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2>Listado de Empleados</h2>
+                    <div><input type="text" class="search-input" placeholder="Buscar empleado..." style="width: 250px;"></div>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>ID</th><th>Código</th><th>Nombre</th><th>Email</th><th>Teléfono</th><th>Cargo</th><th>Estatus</th><th>Acciones</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>EMP001</td>
+                                <td><strong>Juan Pérez</strong></td>
+                                <td>jperez@empresa.com</td>
+                                <td>0412-1234567</td>
+                                <td>Administrador</td>
+                                <td><span class="badge badge-active">Activo</span></td>
+                                <td><div class="action-btns"><button class="action-btn action-btn-edit">✏️ Editar</button><button class="action-btn action-btn-delete">🗑️ Eliminar</button></div></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>EMP002</td>
+                                <td><strong>María García</strong></td>
+                                <td>mgarcia@empresa.com</td>
+                                <td>0416-2345678</td>
+                                <td>Desarrolladora</td>
+                                <td><span class="badge badge-active">Activo</span></td>
+                                <td><div class="action-btns"><button class="action-btn action-btn-edit">✏️ Editar</button><button class="action-btn action-btn-delete">🗑️ Eliminar</button></div></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>EMP003</td>
+                                <td><strong>Carlos López</strong></td>
+                                <td>clopez@empresa.com</td>
+                                <td>0424-3456789</td>
+                                <td>Gerente</td>
+                                <td><span class="badge badge-danger">Inactivo</span></td>
+                                <td><div class="action-btns"><button class="action-btn action-btn-edit">✏️ Editar</button><button class="action-btn action-btn-delete">🗑️ Eliminar</button></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="validaciones.js"></script>
+</body>
+</html>

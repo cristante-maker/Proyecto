@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Educación - Maestros RRHH</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <nav class="sidebar">
+            <h2>Sistema de Gestión</h2>
+            <ul class="menu-list">
+                <li class="menu-item"><a href="dashboard.html"><span class="icon"><img src="Iconos/Dashboard.png" alt="Dashboard" class="menu-icon"></span> Administración</a></li>
+                <li class="menu-item active"><a href="maestros.html"><span class="icon"><img src="Iconos/Maestros.png" alt="Maestros" class="menu-icon"></span> Maestros</a></li>
+                <li class="menu-item"><a href="reclutamiento.html"><span class="icon"><img src="Iconos/Reclutamiento.png" alt="Reclutamiento" class="menu-icon"></span> Reclutamiento</a></li>
+                <li class="menu-item"><a href="contratacion.html"><span class="icon"><img src="Iconos/Contratacion.png" alt="Contratación" class="menu-icon"></span> Contratación</a></li>
+                <li class="menu-item"><a href="asistencia.html"><span class="icon"><img src="Iconos/Asistencia.png" alt="Asistencia" class="menu-icon"></span> Asistencia</a></li>
+                <li class="menu-item"><a href="vacaciones.html"><span class="icon"><img src="Iconos/Vacaciones.png" alt="Vacaciones" class="menu-icon"></span> Vacaciones</a></li>
+                <li class="menu-item"><a href="reposos.html"><span class="icon"><img src="Iconos/Reposo.png" alt="Reposos" class="menu-icon"></span> Reposos</a></li>
+                <li class="menu-item"><a href="permisos.html"><span class="icon"><img src="Iconos/Permiso.png" alt="Permisos" class="menu-icon"></span> Permisos</a></li>
+                <li class="menu-item"><a href="configuracion.html"><span class="icon"><img src="Iconos/Configuracion.png" alt="Configuración" class="menu-icon"></span> Configuración</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <header class="header">
+                <h1>Maestro: Educación</h1>
+                <div class="user-profile"><span>Juan Pérez</span><div class="user-avatar">JP</div></div>
+            </header>
+
+            <!-- Formulario para agregar nuevo registro educativo CON VALIDACIONES -->
+            <div class="section-card">
+                <h3>Agregar registro educativo</h3>
+                
+                <!-- Mensaje de error general -->
+                <div id="error-general"></div>
+
+                <form id="form-educacion">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Empleado *</label>
+                            <select class="form-input" name="empleado">
+                                <option value="">Seleccione empleado...</option>
+                                <option value="1">1 - Juan Pérez</option>
+                                <option value="2">2 - María García</option>
+                                <option value="3">3 - Carlos López</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Nivel *</label>
+                            <select class="form-input" name="nivel">
+                                <option value="">Seleccione...</option>
+                                <option value="Básica">Básica</option>
+                                <option value="Media">Media</option>
+                                <option value="Técnica">Técnica</option>
+                                <option value="Universitaria">Universitaria</option>
+                                <option value="Especialización">Especialización</option>
+                                <option value="Maestría">Maestría</option>
+                                <option value="Doctorado">Doctorado</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Institución *</label>
+                            <input type="text" class="form-input" name="institucion" placeholder="Ej: UCV">
+                        </div>
+                        <div class="form-group">
+                            <label>Título Obtenido *</label>
+                            <input type="text" class="form-input" name="titulo" placeholder="Ej: Ingeniero Informático">
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha Inicio</label>
+                            <input type="date" class="form-input" name="fecha_inicio">
+                        </div>
+                        <div class="form-group">
+                            <label>Fecha Fin</label>
+                            <input type="date" class="form-input" name="fecha_fin">
+                        </div>
+                        <div class="form-group">
+                            <label>Años cursados</label>
+                            <select class="form-input" name="anios">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6+</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Estatus</label>
+                            <select class="form-input" name="estatus">
+                                <option value="Completado">Completado</option>
+                                <option value="En curso">En curso</option>
+                                <option value="Incompleto">Incompleto</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div style="text-align: right; margin-top: 15px;">
+                        <button type="reset" class="btn btn-secondary" style="margin-right: 10px;">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Guardar Educación</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Listado de educación -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2>Listado de Registros Educativos</h2>
+                    <div><input type="text" class="search-input" placeholder="Buscar..." style="width: 250px;"></div>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>ID</th><th>Empleado</th><th>Nivel</th><th>Institución</th><th>Título</th><th>Período</th><th>Estatus</th><th>Acciones</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Juan Pérez</td>
+                                <td>Universitaria</td>
+                                <td>UCV</td>
+                                <td>Ingeniero Informático</td>
+                                <td>2015-2020</td>
+                                <td><span class="badge badge-active">Completado</span></td>
+                                <td><div class="action-btns"><button class="action-btn action-btn-edit">Editar</button><button class="action-btn action-btn-delete">Eliminar</button></div></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>María García</td>
+                                <td>Maestría</td>
+                                <td>USB</td>
+                                <td>Gerencia de Proyectos</td>
+                                <td>2021-2023</td>
+                                <td><span class="badge badge-warning">En curso</span></td>
+                                <td><div class="action-btns"><button class="action-btn action-btn-edit">Editar</button><button class="action-btn action-btn-delete">Eliminar</button></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="validaciones.js"></script>
+</body>
+</html>

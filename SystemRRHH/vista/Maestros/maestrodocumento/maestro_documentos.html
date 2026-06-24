@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Documentos - Maestros RRHH</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <nav class="sidebar">
+            <h2>Sistema de Gestión</h2>
+            <ul class="menu-list">
+                <li class="menu-item"><a href="dashboard.html"><span class="icon"><img src="Iconos/Dashboard.png" alt="Dashboard" class="menu-icon"></span> Administración</a></li>
+                <li class="menu-item active"><a href="maestros.html"><span class="icon"><img src="Iconos/Maestros.png" alt="Maestros" class="menu-icon"></span> Maestros</a></li>
+                <li class="menu-item"><a href="reclutamiento.html"><span class="icon"><img src="Iconos/Reclutamiento.png" alt="Reclutamiento" class="menu-icon"></span> Reclutamiento</a></li>
+                <li class="menu-item"><a href="contratacion.html"><span class="icon"><img src="Iconos/Contratacion.png" alt="Contratación" class="menu-icon"></span> Contratación</a></li>
+                <li class="menu-item"><a href="asistencia.html"><span class="icon"><img src="Iconos/Asistencia.png" alt="Asistencia" class="menu-icon"></span> Asistencia</a></li>
+                <li class="menu-item"><a href="vacaciones.html"><span class="icon"><img src="Iconos/Vacaciones.png" alt="Vacaciones" class="menu-icon"></span> Vacaciones</a></li>
+                <li class="menu-item"><a href="reposos.html"><span class="icon"><img src="Iconos/Reposo.png" alt="Reposos" class="menu-icon"></span> Reposos</a></li>
+                <li class="menu-item"><a href="permisos.html"><span class="icon"><img src="Iconos/Permiso.png" alt="Permisos" class="menu-icon"></span> Permisos</a></li>
+                <li class="menu-item"><a href="configuracion.html"><span class="icon"><img src="Iconos/Configuracion.png" alt="Configuración" class="menu-icon"></span> Configuración</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <header class="header">
+                <h1>Maestro: Documentos Requeridos</h1>
+                <div class="user-profile"><span>Juan Pérez</span><div class="user-avatar">JP</div></div>
+            </header>
+
+            <!-- Formulario para agregar nuevo documento CON VALIDACIONES -->
+            <div class="section-card">
+                <h3>Agregar nuevo documento</h3>
+                
+                <!-- Mensaje de error general -->
+                <div id="error-general"></div>
+
+                <form id="form-documentos">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label>Nombre del Documento *</label>
+                            <input type="text" class="form-input" name="nombre" placeholder="Ej: Certificado Médico">
+                        </div>
+                        <div class="form-group">
+                            <label>Categoría</label>
+                            <select class="form-input" name="categoria">
+                                <option value="">Seleccione...</option>
+                                <option value="Identificación">Identificación</option>
+                                <option value="Académico">Académico</option>
+                                <option value="Laboral">Laboral</option>
+                                <option value="Médico">Médico</option>
+                                <option value="Legal">Legal</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Formato aceptado</label>
+                            <select class="form-input" name="formato">
+                                <option value="PDF">PDF</option>
+                                <option value="Imagen">Imagen</option>
+                                <option value="Ambos">Ambos</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="grid-column: span 2;">
+                            <label>Descripción</label>
+                            <textarea class="form-input" name="descripcion" rows="2" placeholder="Descripción adicional del documento..."></textarea>
+                        </div>
+                    </div>
+                    <div style="text-align: right; margin-top: 15px;">
+                        <button type="reset" class="btn btn-secondary" style="margin-right: 10px;">Cancelar</button>
+                        <button type="submit" class="btn btn-success">Guardar Documento</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Listado de documentos -->
+            <div class="section-card">
+                <div class="section-header">
+                    <h2>Listado de Documentos</h2>
+                    <div><input type="text" class="search-input" placeholder="Buscar..." style="width: 250px;"></div>
+                </div>
+                <div style="overflow-x: auto;">
+                    <table class="data-table">
+                        <thead>
+                            <tr><th>ID</th><th>Nombre</th><th>Categoría</th><th>Formato</th><th>Acciones</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td><strong>Cédula de Identidad</strong></td>
+                                <td>Identificación</td>
+                                <td>PDF/Imagen</td>
+                                <td><div class="action-btns"><button class="action-btn action-btn-edit">Editar</button><button class="action-btn action-btn-delete">Eliminar</button></div></td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td><strong>Partida de Nacimiento</strong></td>
+                                <td>Identificación</td>
+                                <td>PDF</td>
+                                <td><div class="action-btns"><button class="action-btn action-btn-edit">Editar</button><button class="action-btn action-btn-delete">Eliminar</button></div></td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td><strong>Título Académico</strong></td>
+                                <td>Académico</td>
+                                <td>PDF</td>
+                                <td><div class="action-btns"><button class="action-btn action-btn-edit">Editar</button><button class="action-btn action-btn-delete">Eliminar</button></div></td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td><strong>Certificado de Trabajo</strong></td>
+                                <td>Laboral</td>
+                                <td>PDF</td>
+                                <td><div class="action-btns"><button class="action-btn action-btn-edit">Editar</button><button class="action-btn action-btn-delete">Eliminar</button></div></td>
+                            </tr>
+                            <tr>
+                                <td>5</td>
+                                <td><strong>Constancia de Estudios</strong></td>
+                                <td>Académico</td>
+                                <td>PDF</td>
+                                <td><div class="action-btns"><button class="action-btn action-btn-edit">Editar</button><button class="action-btn action-btn-delete">Eliminar</button></div></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="validaciones.js"></script>
+</body>
+</html>
