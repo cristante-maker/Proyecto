@@ -1,151 +1,108 @@
 <?php
-// controlador/ctl_pais.php
+require_once($_SERVER['DOCUMENT_ROOT'] . "/SystemRRHH/modelo/conexion.php");
+$con = conexion();
 
-include("../modelo/conexion.php");
-include("../modelo/clase_pais.php");
+// ============================================
+// FUNCIONES AUXILIARES
+// ============================================
 
-$pais = new Pais();
-
-// ============================================================
-// 1. REGISTRAR
-// ============================================================
-if(isset($_POST['registrar']) && $_POST['registrar'] == "registrar"){
-    $nombre = trim($_POST['nombre'] ?? '');
-    $codigo = trim($_POST['codigo_iso'] ?? '');
-    
-    if (empty($nombre)) {
-        echo "<script>alert('El nombre del país es obligatorio.')</script>";
-        echo "<META HTTP-EQUIV='refresh' CONTENT='0; URL=../vista/Maestros/Maestropais/insert_pais.html'>";
-        exit;
-    }
-    
-    $pais->setNombre($nombre);
-    $pais->setCodigoIso($codigo);
-
-    $datos = $pais->RegistrarPais(
-        $pais->getNombre(),
-        $pais->getCodigoIso()
-    );
-
-    if($datos == 0){
-        echo "<script>alert('No se pudo registrar el país. Verifica que el nombre no esté duplicado.')</script>";
-        echo "<META HTTP-EQUIV='refresh' CONTENT='0; URL=../vista/Maestros/Maestropais/insert_pais.html'>";
-    } else {
-        echo "<script>alert('País registrado con éxito.')</script>";
-        echo "<META HTTP-EQUIV='refresh' CONTENT='0; URL=../vista/Maestros/Maestropais/maestro_pais.php'>";
-    }
-    exit;
+function redirectWithAlert($message, $url) {
+    echo "<script>alert('$message'); window.location.href='$url';</script>";
+    exit();
 }
 
-// ============================================================
-// 2. CONSULTAR (por NOMBRE)
-// ============================================================
-if(isset($_POST['consultar']) && $_POST['consultar'] == "consultar"){
-    $nombre = trim($_POST['nombre'] ?? '');
-    
-    if (empty($nombre)) {
-        echo "<script>alert('Debes ingresar un nombre para consultar.')</script>";
-        echo "<META HTTP-EQUIV='refresh' CONTENT='0; URL=../vista/Maestros/Maestropais/select_pais.html'>";
-        exit;
+function paisExiste($con, $nombre, $excluirId = null) {
+    $sql = "SELECT id_pais FROM pais WHERE Nombre = '$nombre'";
+    if ($excluirId) {
+        $sql .= " AND id_pais != $excluirId";
     }
-    
-    $pais->setNombre($nombre);
-    $datos = $pais->ConsultarPais($pais->getNombre());
-
-    if($datos == 0){
-        echo "<script>alert('No se encontró el país: " . $nombre . "')</script>";
-        echo "<META HTTP-EQUIV='refresh' CONTENT='0; URL=../vista/Maestros/Maestropais/select_pais.html'>";
-    } else {
-        $nom = base64_encode($datos[0]);
-        $iso = base64_encode($datos[1] ?? '');
-        // ✅ RUTA CORRECTA
-        header("Location: ../vista/Maestros/Maestropais/select_pais.php?b=$nom&c=$iso");
-    }
-    exit;
+    $result = $con->query($sql);
+    return $result->num_rows > 0;
 }
 
-// ============================================================
-// 3. MOSTRAR (para Actualizar - por NOMBRE)
-// ============================================================
-if(isset($_POST['mostrar']) && $_POST['mostrar'] == "mostrar"){
-    $nombre = trim($_POST['nombre'] ?? '');
-    
-    if (empty($nombre)) {
-        echo "<script>alert('Debes ingresar un nombre para buscar.')</script>";
-        echo "<META HTTP-EQUIV='refresh' CONTENT='0; URL=../vista/Maestros/Maestropais/update_pais.html'>";
-        exit;
-    }
-    
-    $pais->setNombre($nombre);
-    $datos = $pais->MostrarPais($pais->getNombre());
-
-    if($datos == 0){
-        echo "<script>alert('No se encontró el país: " . $nombre . "')</script>";
-        echo "<META HTTP-EQUIV='refresh' CONTENT='0; URL=../vista/Maestros/Maestropais/update_pais.html'>";
-    } else {
-        $nom = base64_encode($datos[0]);
-        $iso = base64_encode($datos[1] ?? '');
-        // ✅ RUTA CORRECTA
-        header("Location: ../vista/Maestros/Maestropais/update_pais.php?b=$nom&c=$iso");
-    }
-    exit;
+function validarNombre($nombre) {
+    $nombre = trim($nombre);
+    return !empty($nombre) ? $nombre : null;
 }
 
-// ============================================================
-// 4. ACTUALIZAR (MODIFICAR)
-// ============================================================
-if(isset($_POST['modificar']) && $_POST['modificar'] == "modificar"){
-    $nombre_actual = trim($_POST['nombre_actual'] ?? '');
-    $nombre_nuevo = trim($_POST['nombre'] ?? '');
-    $codigo_iso = trim($_POST['codigo_iso'] ?? '');
-    
-    if (empty($nombre_actual) || empty($nombre_nuevo)) {
-        echo "<script>alert('El nombre es obligatorio.')</script>";
-        echo "<META HTTP-EQUIV='refresh' CONTENT='0; URL=../vista/Maestros/Maestropais/update_pais.html'>";
-        exit;
-    }
+// ============================================
+// PROCESAR ACCIONES
+// ============================================
 
-    $pais->setNombre($nombre_nuevo);
-    $pais->setCodigoIso($codigo_iso);
+$accion = isset($_POST['accion']) ? $_POST['accion'] : '';
 
-    $datos = $pais->ActualizarPais(
-        $nombre_actual,
-        $pais->getNombre(),
-        $pais->getCodigoIso()
-    );
-
-    if($datos == 0){
-        echo "<script>alert('No se pudo actualizar el país. Verifica que el nuevo nombre no esté duplicado.')</script>";
-        echo "<META HTTP-EQUIV='refresh' CONTENT='0; URL=../vista/Maestros/Maestropais/update_pais.html'>";
-    } else {
-        echo "<script>alert('País actualizado con éxito.')</script>";
-        echo "<META HTTP-EQUIV='refresh' CONTENT='0; URL=../vista/Maestros/Maestropais/maestro_pais.php'>";
-    }
-    exit;
+// Si no hay acción, no hacer nada (salir sin redirigir)
+if (empty($accion)) {
+    return; // Salir del controlador sin hacer nada
 }
 
-// ============================================================
-// 5. ELIMINAR (por NOMBRE)
-// ============================================================
-if(isset($_POST['eliminar']) && $_POST['eliminar'] == "eliminar"){
-    $nombre = trim($_POST['nombre'] ?? '');
-    
-    if (empty($nombre)) {
-        echo "<script>alert('Debes ingresar un nombre para eliminar.')</script>";
-        echo "<META HTTP-EQUIV='refresh' CONTENT='0; URL=../vista/Maestros/Maestropais/delete_pais.html'>";
-        exit;
-    }
-    
-    $pais->setNombre($nombre);
-    $datos = $pais->EliminarPais($pais->getNombre());
+$nombre = validarNombre($_POST['nombre'] ?? '');
 
-    if($datos == 0){
-        echo "<script>alert('No se pudo eliminar el país. Verifica que el nombre exista.')</script>";
-        echo "<META HTTP-EQUIV='refresh' CONTENT='0; URL=../vista/Maestros/Maestropais/delete_pais.html'>";
-    } else {
-        echo "<script>alert('País eliminado con éxito.')</script>";
-        echo "<META HTTP-EQUIV='refresh' CONTENT='0; URL=../vista/Maestros/Maestropais/maestro_pais.php'>";
+// ============================================
+// REGISTRAR
+// ============================================
+if ($accion === 'registrar') {
+    if (!$nombre) {
+        redirectWithAlert('El nombre es obligatorio', '/SystemRRHH/vista/Maestros/Maestropais/crud_pais.php');
     }
-    exit;
+    
+    if (paisExiste($con, $nombre)) {
+        redirectWithAlert('El país ya existe', '/SystemRRHH/vista/Maestros/Maestropais/crud_pais.php');
+    }
+    
+    $result = $con->query("INSERT INTO pais (Nombre) VALUES ('$nombre')");
+    $mensaje = $result ? 'País registrado exitosamente' : 'Error al registrar: ' . $con->error;
+    redirectWithAlert($mensaje, '/SystemRRHH/vista/Maestros/Maestropais/crud_pais.php');
+}
+
+// ============================================
+// MODIFICAR
+// ============================================
+if ($accion === 'modificar') {
+    if (!$nombre) {
+        $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
+        redirectWithAlert('El nombre es obligatorio', "/SystemRRHH/vista/Maestros/Maestropais/crud_mdf_pais.php?id=$id");
+    }
+    
+    $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
+    if ($id <= 0) {
+        redirectWithAlert('ID inválido', '/SystemRRHH/vista/Maestros/Maestropais/crud_pais.php');
+    }
+    
+    if (paisExiste($con, $nombre, $id)) {
+        redirectWithAlert('El país ya existe', "/SystemRRHH/vista/Maestros/Maestropais/crud_mdf_pais.php?id=$id");
+    }
+    
+    $result = $con->query("UPDATE pais SET Nombre = '$nombre' WHERE id_pais = $id");
+    $mensaje = $result ? 'País modificado exitosamente' : 'Error al modificar: ' . $con->error;
+    $url = $result 
+        ? '/SystemRRHH/vista/Maestros/Maestropais/crud_pais.php'
+        : "/SystemRRHH/vista/Maestros/Maestropais/crud_mdf_pais.php?id=$id";
+    redirectWithAlert($mensaje, $url);
+}
+
+// ============================================
+// ELIMINAR
+// ============================================
+if ($accion === 'eliminar') {
+    $id = isset($_POST['id']) ? (int)$_POST['id'] : 0;
+    if ($id <= 0) {
+        redirectWithAlert('ID inválido', '/SystemRRHH/vista/Maestros/Maestropais/crud_pais.php');
+    }
+    
+    // Verificar si el país existe
+    $check = $con->query("SELECT Nombre FROM pais WHERE id_pais = $id");
+    if ($check->num_rows === 0) {
+        redirectWithAlert('El país no existe', '/SystemRRHH/vista/Maestros/Maestropais/crud_pais.php');
+    }
+    
+    $pais = $check->fetch_object();
+    
+    // Eliminar
+    if ($con->query("DELETE FROM pais WHERE id_pais = $id")) {
+        redirectWithAlert("País \"$pais->Nombre\" eliminado exitosamente", '/SystemRRHH/vista/Maestros/Maestropais/crud_pais.php');
+    } else {
+        redirectWithAlert('Error al eliminar: ' . $con->error, "/SystemRRHH/vista/Maestros/Maestropais/crud_elm_pais.php?id=$id");
+    }
 }
 ?>

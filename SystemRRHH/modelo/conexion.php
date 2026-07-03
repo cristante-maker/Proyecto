@@ -1,19 +1,21 @@
 <?php
-// modelo/conexion.php
+// /opt/lampp/htdocs/SystemRRHH/modelo/conexion.php
+function conexion() {
+    $host = "localhost";
+    $user = "root";
+    $pass = "";
+    $bd = "db_system";
 
-try {
-    $servidor = "localhost";
-    $namebd = "databas";        // ← CAMBIADO a "databas" (según el error)
-    $usuario = "root";          // ← Usuario XAMPP
-    $clave = "";                // ← Contraseña vacía
-    
-    $dsn = "mysql:host=" . $servidor . ";dbname=" . $namebd . ";charset=utf8mb4";
-    $conex = new PDO($dsn, $usuario, $clave);
-    $conex->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    $conex->setAttribute(PDO::ATTR_DEFAULT_FETCH_MODE, PDO::FETCH_ASSOC);
-    
-} catch (PDOException $e) {
-    print "❌ ¡Error de Conexión!: " . $e->getMessage() . "<br/>";
-    die();
+    $connect = mysqli_connect($host, $user, $pass);
+
+    if (!$connect) {
+        die("Error de conexión a MySQL: " . mysqli_connect_error());
+    }
+
+    if (!mysqli_select_db($connect, $bd)) {
+        die("Error al seleccionar la base de datos: " . mysqli_error($connect));
+    }
+
+    return $connect;
 }
 ?>

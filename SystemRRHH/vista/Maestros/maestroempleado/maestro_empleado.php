@@ -1,5 +1,5 @@
 <?php
-include("../../../modelo/conexion.php");
+include("/SystemRRHH/modelo/conexion.php");
 $sql = $conex->prepare("SELECT cedula, primer_nombre, segundo_nombre, primer_apellido, segundo_apellido, num_telefonico FROM empleado ORDER BY primer_nombre, primer_apellido ASC;");
 $sql->execute();
 $num_reg = $sql->rowCount();
