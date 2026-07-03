@@ -2,8 +2,8 @@
 -- SISTEMA DE GESTIÓN RRHH - BASE DE DATOS (CORREGIDA SEGÚN MER)
 -- ============================================
 
-CREATE DATABASE IF NOT EXISTS rrhh_sistema;
-USE rrhh_sistema;
+CREATE DATABASE IF NOT EXISTS db_system;
+USE db_system;
 
 -- ============================================
 -- 1. TABLAS INDEPENDIENTES (CATÁLOGOS BASE)
