@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configuración - Sistema RRHH</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Estilos adicionales para configuración */
+        .config-section {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 25px;
+            border: 1px solid #e2e8f0;
+        }
+        .config-section h3 {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #e2e8f0;
+            color: #1e293b;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+        .config-item {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .config-item label {
+            font-weight: 600;
+            font-size: 0.8rem;
+            color: #475569;
+            text-transform: uppercase;
+        }
+        .config-item input, .config-item select {
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 10px;
+            font-size: 0.9rem;
+        }
+        .config-item input:focus, .config-item select:focus {
+            outline: none;
+            border-color: #3b82f6;
+            box-shadow: 0 0 0 2px rgba(59,130,246,0.1);
+        }
+        .toggle-switch {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .toggle-switch:last-child {
+            border-bottom: none;
+        }
+        .toggle-label {
+            font-weight: 500;
+            color: #1e293b;
+        }
+        .toggle-desc {
+            font-size: 0.7rem;
+            color: #64748b;
+        }
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #cbd5e1;
+            transition: 0.3s;
+            border-radius: 34px;
+        }
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 18px;
+            width: 18px;
+            left: 3px;
+            bottom: 3px;
+            background-color: white;
+            transition: 0.3s;
+            border-radius: 50%;
+        }
+        input:checked + .slider {
+            background-color: #3b82f6;
+        }
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        .parametro-valor {
+            font-family: monospace;
+            background: #f1f5f9;
+            padding: 4px 8px;
+            border-radius: 6px;
+            font-size: 0.8rem;
+        }
+        .acciones-footer {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #e2e8f0;
+        }
+        .color-preview {
+            width: 30px;
+            height: 30px;
+            border-radius: 8px;
+            border: 1px solid #cbd5e1;
+            margin-left: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <nav class="sidebar">
+            <h2>Sistema de Gestión</h2>
+            <ul class="menu-list">
+                <li class="menu-item">
+                    <a href="dashboard.html">
+                        <span class="icon">
+                            <img src="Iconos/Dashboard.png" alt="Dashboard" class="menu-icon">
+                        </span>
+                        Administración
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="maestros.html">
+                        <span class="icon">
+                            <img src="Iconos/Maestros.png" alt="Maestros" class="menu-icon">
+                        </span>
+                        Maestros
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="reclutamiento.html">
+                        <span class="icon">
+                            <img src="Iconos/Reclutamiento.png" alt="Reclutamiento" class="menu-icon">
+                        </span>
+                        Reclutamiento
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="contratacion.html">
+                        <span class="icon">
+                            <img src="Iconos/Contratacion.png" alt="Contratación" class="menu-icon">
+                        </span>
+                        Contratación
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="asistencia.html">
+                        <span class="icon">
+                            <img src="Iconos/Asistencia.png" alt="Asistencia" class="menu-icon">
+                        </span>
+                        Asistencia
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="vacaciones.html">
+                        <span class="icon">
+                            <img src="Iconos/Vacaciones.png" alt="Vacaciones" class="menu-icon">
+                        </span>
+                        Vacaciones
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="reposos.html">
+                        <span class="icon">
+                            <img src="Iconos/Reposo.png" alt="Reposos" class="menu-icon">
+                        </span>
+                        Reposos
+                    </a>
+                </li>
+                <li class="menu-item">
+                    <a href="permisos.html">
+                        <span class="icon">
+                            <img src="Iconos/Permiso.png" alt="Permisos" class="menu-icon">
+                        </span>
+                        Permisos
+                    </a>
+                </li>
+                <li class="menu-item active">
+                    <a href="configuracion.html">
+                        <span class="icon">
+                            <img src="Iconos/Configuracion.png" alt="Configuración" class="menu-icon">
+                        </span>
+                        Configuración
+                    </a>
+                </li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <header class="header">
+                <h1>Configuración del Sistema</h1>
+                <div class="user-profile">
+                    <span>Juan Pérez</span>
+                    <div class="user-avatar">JP</div>
+                </div>
+            </header>
+
+            <div class="page-header">
+                <p>Personaliza los parámetros, políticas y preferencias del sistema de gestión de RRHH</p>
+            </div>
+
+            <!-- Configuración General -->
+            <div class="config-section">
+                <h3>Configuración General</h3>
+                <div class="config-grid">
+                    <div class="config-item">
+                        <label>Nombre de la Empresa</label>
+                        <input type="text" value="Mi Empresa S.A." placeholder="Nombre de la empresa">
+                    </div>
+                    <div class="config-item">
+                        <label>RIF / NIT</label>
+                        <input type="text" value="J-12345678-0" placeholder="RIF de la empresa">
+                    </div>
+                    <div class="config-item">
+                        <label>Dirección</label>
+                        <input type="text" value="Av. Principal, Edif. Corporativo, Piso 5, Caracas" placeholder="Dirección">
+                    </div>
+                    <div class="config-item">
+                        <label>Teléfono Principal</label>
+                        <input type="text" value="+58 212 555-1234" placeholder="Teléfono">
+                    </div>
+                    <div class="config-item">
+                        <label>Correo Electrónico</label>
+                        <input type="email" value="rrhh@miempresa.com" placeholder="Correo">
+                    </div>
+                    <div class="config-item">
+                        <label>Sitio Web</label>
+                        <input type="text" value="www.miempresa.com" placeholder="Sitio web">
+                    </div>
+                    <div class="config-item">
+                        <label>Logo de la Empresa</label>
+                        <input type="file" accept="image/*">
+                    </div>
+                    <div class="config-item">
+                        <label>Zona Horaria</label>
+                        <select>
+                            <option>Caracas (UTC-4)</option>
+                            <option>Bogotá (UTC-5)</option>
+                            <option>México (UTC-6)</option>
+                            <option>Madrid (UTC+1)</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Políticas Laborales -->
+            <div class="config-section">
+                <h3>Políticas Laborales</h3>
+                <div class="config-grid">
+                    <div class="config-item">
+                        <label>Horas Laborales por Día</label>
+                        <input type="number" value="8" min="1" max="12">
+                    </div>
+                    <div class="config-item">
+                        <label>Días laborales a la semana</label>
+                        <select>
+                            <option>5 días (Lunes a Viernes)</option>
+                            <option selected>5 días (Lunes a Viernes)</option>
+                            <option>6 días (Lunes a Sábado)</option>
+                        </select>
+                    </div>
+                    <div class="config-item">
+                        <label>Horario de Entrada (Defecto)</label>
+                        <input type="time" value="08:00">
+                    </div>
+                    <div class="config-item">
+                        <label>Horario de Salida (Defecto)</label>
+                        <input type="time" value="17:00">
+                    </div>
+                    <div class="config-item">
+                        <label>Tolerancia de Tardanza (minutos)</label>
+                        <input type="number" value="15" min="0" max="60">
+                    </div>
+                    <div class="config-item">
+                        <label>Días de Vacaciones Anuales</label>
+                        <input type="number" value="15" min="0" max="60">
+                    </div>
+                    <div class="config-item">
+                        <label>Bono Vacacional (%)</label>
+                        <input type="number" value="120" min="0" max="200">
+                    </div>
+                    <div class="config-item">
+                        <label>Utilidades (días por año)</label>
+                        <input type="number" value="120" min="0" max="180">
+                    </div>
+                    <div class="config-item">
+                        <label>Período de Prueba (días)</label>
+                        <input type="number" value="90" min="0" max="180">
+                    </div>
+                    <div class="config-item">
+                        <label>Días máximos de reposo sin justificar</label>
+                        <input type="number" value="3" min="0" max="10">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Configuración de Notificaciones -->
+            <div class="config-section">
+                <h3>Notificaciones</h3>
+                <div style="display: flex; flex-direction: column; gap: 10px;">
+                    <div class="toggle-switch">
+                        <div>
+                            <div class="toggle-label">Notificaciones por Correo Electrónico</div>
+                            <div class="toggle-desc">Recibir alertas por correo sobre solicitudes y actualizaciones</div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-switch">
+                        <div>
+                            <div class="toggle-label">Notificaciones por SMS</div>
+                            <div class="toggle-desc">Recibir alertas vía SMS para eventos importantes</div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox">
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-switch">
+                        <div>
+                            <div class="toggle-label">Notificaciones en el Sistema</div>
+                            <div class="toggle-desc">Mostrar notificaciones dentro de la plataforma</div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-switch">
+                        <div>
+                            <div class="toggle-label">Notificaciones de Cumpleaños</div>
+                            <div class="toggle-desc">Recordatorio de cumpleaños de los empleados</div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                    <div class="toggle-switch">
+                        <div>
+                            <div class="toggle-label">Alertas de Vencimiento de Documentos</div>
+                            <div class="toggle-desc">Notificar cuando documentos estén por vencer</div>
+                        </div>
+                        <label class="switch">
+                            <input type="checkbox" checked>
+                            <span class="slider"></span>
+                        </label>
+                    </div>
+                </div>
+                <div class="config-grid" style="margin-top: 20px;">
+                    <div class="config-item">
+                        <label>Correo para Notificaciones</label>
+                        <input type="email" value="alertas@miempresa.com" placeholder="Correo destinatario">
+                    </div>
+                    <div class="config-item">
+                        <label>Teléfono para SMS</label>
+                        <input type="text" value="+58 412 1234567" placeholder="Número telefónico">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Seguridad y Acceso -->
+            <div class="config-section">
+                <h3>Seguridad y Acceso</h3>
+                <div class="config-grid">
+                    <div class="config-item">
+                        <label>Tiempo de Sesión (minutos)</label>
+                        <input type="number" value="30" min="5" max="120">
+                    </div>
+                    <div class="config-item">
+                        <label>Intentos de Login permitidos</label>
+                        <input type="number" value="3" min="1" max="10">
+                    </div>
+                    <div class="config-item">
+                        <label>Política de Contraseña</label>
+                        <select>
+                            <option>Básica (mínimo 6 caracteres)</option>
+                            <option selected>Media (mínimo 8 caracteres, 1 número)</option>
+                            <option>Fuerte (mínimo 10 caracteres, mayúsculas, números, símbolos)</option>
+                        </select>
+                    </div>
+                    <div class="config-item">
+                        <label>Autenticación de Dos Factores (2FA)</label>
+                        <select>
+                            <option>Desactivado</option>
+                            <option selected>Activado para administradores</option>
+                            <option>Activado para todos</option>
+                        </select>
+                    </div>
+                    <div class="config-item">
+                        <label>Registro de Actividades (Logs)</label>
+                        <select>
+                            <option>Solo errores</option>
+                            <option selected>Básico (accesos y cambios)</option>
+                            <option>Completo (todas las acciones)</option>
+                        </select>
+                    </div>
+                    <div class="config-item">
+                        <label>Retención de Logs (días)</label>
+                        <input type="number" value="90" min="7" max="365">
+                    </div>
+                </div>
+                <div class="toggle-switch" style="margin-top: 15px;">
+                    <div>
+                        <div class="toggle-label">Requiere aprobación de cambios</div>
+                        <div class="toggle-desc">Los cambios en datos sensibles requieren aprobación de supervisor</div>
+                    </div>
+                    <label class="switch">
+                        <input type="checkbox" checked>
+                        <span class="slider"></span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Personalización de Apariencia -->
+            <div class="config-section">
+                <h3>Personalización de Apariencia</h3>
+                <div class="config-grid">
+                    <div class="config-item">
+                        <label>Color Primario</label>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <input type="color" value="#2c3e50">
+                            <span class="parametro-valor">#2c3e50</span>
+                        </div>
+                    </div>
+                    <div class="config-item">
+                        <label>Color Secundario</label>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <input type="color" value="#3498db">
+                            <span class="parametro-valor">#3498db</span>
+                        </div>
+                    </div>
+                    <div class="config-item">
+                        <label>Color de Éxito</label>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <input type="color" value="#2ecc71">
+                            <span class="parametro-valor">#2ecc71</span>
+                        </div>
+                    </div>
+                    <div class="config-item">
+                        <label>Color de Alerta</label>
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <input type="color" value="#e74c3c">
+                            <span class="parametro-valor">#e74c3c</span>
+                        </div>
+                    </div>
+                    <div class="config-item">
+                        <label>Tema del Sistema</label>
+                        <select>
+                            <option selected>Claro</option>
+                            <option>Oscuro</option>
+                            <option>Sistema (automático)</option>
+                        </select>
+                    </div>
+                    <div class="config-item">
+                        <label>Tamaño de Fuente</label>
+                        <select>
+                            <option>Pequeño</option>
+                            <option selected>Mediano</option>
+                            <option>Grande</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Módulos Activos -->
+            <div class="config-section">
+                <h3>🧩 Módulos del Sistema</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px;">
+                    <div class="toggle-switch" style="border-bottom: none; padding: 8px 0;">
+                        <div class="toggle-label">Dashboard</div>
+                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                    </div>
+                    <div class="toggle-switch" style="border-bottom: none; padding: 8px 0;">
+                        <div class="toggle-label">Maestros</div>
+                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                    </div>
+                    <div class="toggle-switch" style="border-bottom: none; padding: 8px 0;">
+                        <div class="toggle-label">Reclutamiento</div>
+                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                    </div>
+                    <div class="toggle-switch" style="border-bottom: none; padding: 8px 0;">
+                        <div class="toggle-label">Contratación</div>
+                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                    </div>
+                    <div class="toggle-switch" style="border-bottom: none; padding: 8px 0;">
+                        <div class="toggle-label">Asistencia</div>
+                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                    </div>
+                    <div class="toggle-switch" style="border-bottom: none; padding: 8px 0;">
+                        <div class="toggle-label">Vacaciones</div>
+                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                    </div>
+                    <div class="toggle-switch" style="border-bottom: none; padding: 8px 0;">
+                        <div class="toggle-label">Reposos</div>
+                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                    </div>
+                    <div class="toggle-switch" style="border-bottom: none; padding: 8px 0;">
+                        <div class="toggle-label">Permisos</div>
+                        <label class="switch"><input type="checkbox" checked><span class="slider"></span></label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Base de Datos y Backup -->
+            <div class="config-section">
+                <h3>Base de Datos y Backup</h3>
+                <div class="config-grid">
+                    <div class="config-item">
+                        <label>Frecuencia de Backup Automático</label>
+                        <select>
+                            <option>Diario</option>
+                            <option selected>Semanal</option>
+                            <option>Mensual</option>
+                            <option>Desactivado</option>
+                        </select>
+                    </div>
+                    <div class="config-item">
+                        <label>Hora de Backup</label>
+                        <input type="time" value="02:00">
+                    </div>
+                    <div class="config-item">
+                        <label>Último Backup</label>
+                        <div class="parametro-valor">10/08/2026 02:00:00</div>
+                    </div>
+                    <div class="config-item">
+                        <label>Tamaño de Base de Datos</label>
+                        <div class="parametro-valor">156.8 MB</div>
+                    </div>
+                </div>
+                <div style="display: flex; gap: 10px; margin-top: 15px;">
+                    <button class="btn btn-primary">Realizar Backup Ahora</button>
+                    <button class="btn btn-secondary">Restaurar Backup</button>
+                </div>
+            </div>
+
+            <!-- Botones de acción -->
+            <div class="acciones-footer">
+                <button class="btn btn-secondary">Cancelar</button>
+                <button class="btn btn-success">Guardar Configuración</button>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

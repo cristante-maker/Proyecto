@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reposos Médicos - Sistema RRHH</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .reposo-card {
+            border: 2px solid #2c3e66;
+            border-radius: 12px;
+            padding: 15px;
+            margin-bottom: 20px;
+            background: white;
+        }
+        .badge-completado {
+            background-color: #d1fae5;
+            color: #065f46;
+        }
+        .badge-activo {
+            background-color: #fef3c7;
+            color: #92400e;
+        }
+        .badge-vencido {
+            background-color: #fee2e2;
+            color: #991b1b;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <nav class="sidebar">
+            <h2>Sistema de Gestión</h2>
+            <ul class="menu-list">
+                <li class="menu-item"><a href="dashboard.html"><span class="icon"><img src="Iconos/Dashboard.png" alt="Dashboard" class="menu-icon"></span> Administración</a></li>
+                <li class="menu-item"><a href="maestros.html"><span class="icon"><img src="Iconos/Maestros.png" alt="Maestros" class="menu-icon"></span> Maestros</a></li>
+                <li class="menu-item"><a href="reclutamiento.html"><span class="icon"><img src="Iconos/Reclutamiento.png" alt="Reclutamiento" class="menu-icon"></span> Reclutamiento</a></li>
+                <li class="menu-item"><a href="contratacion.html"><span class="icon"><img src="Iconos/Contratacion.png" alt="Contratación" class="menu-icon"></span> Contratación</a></li>
+                <li class="menu-item"><a href="asistencia.html"><span class="icon"><img src="Iconos/Asistencia.png" alt="Asistencia" class="menu-icon"></span> Asistencia</a></li>
+                <li class="menu-item"><a href="vacaciones.html"><span class="icon"><img src="Iconos/Vacaciones.png" alt="Vacaciones" class="menu-icon"></span> Vacaciones</a></li>
+                <li class="menu-item active"><a href="reposos.html"><span class="icon"><img src="Iconos/Reposo.png" alt="Reposos" class="menu-icon"></span> Reposos</a></li>
+                <li class="menu-item"><a href="permisos.html"><span class="icon"><img src="Iconos/Permiso.png" alt="Permisos" class="menu-icon"></span> Permisos</a></li>
+                <li class="menu-item"><a href="configuracion.html"><span class="icon"><img src="Iconos/Configuracion.png" alt="Configuración" class="menu-icon"></span> Configuración</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <header class="header">
+                <h1>Reposos Médicos</h1>
+                <div class="user-profile">
+                    <span>Juan Pérez</span>
+                    <div class="user-avatar">JP</div>
+                </div>
+            </header>
+
+            <div class="page-header">
+                <p>Registro, control y seguimiento de reposos médicos del personal</p>
+            </div>
+
+            <div id="error-general"></div>
+
+            <div style="display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 20px;">
+                <button type="reset" class="btn btn-secondary" form="form-reposo">🧹 Limpiar campos</button>
+                <button type="button" class="btn btn-primary">➕ Nueva Solicitud de Reposo</button>
+            </div>
+
+            <div class="section-card" style="padding: 1.5rem;">
+                <div class="cv-container-reclutamiento">
+                    <div class="titulo-principal-reclutamiento">SOLICITUD Y CONTROL DE REPOSO MÉDICO</div>
+                    <div style="text-align: center; margin-bottom: 1rem; font-size: 0.8rem; color: #334155;">
+                        REPÚBLICA BOLIVARIANA DE VENEZUELA<br>
+                        DIRECCIÓN DE RECURSOS HUMANOS<br>
+                        DEPARTAMENTO DE SALUD OCUPACIONAL
+                    </div>
+
+                    <form id="form-reposo">
+
+                        <!-- ================= DATOS DEL TRABAJADOR ================= -->
+                        <h2 class="seccion-titulo-reclutamiento">👤 DATOS DEL TRABAJADOR</h2>
+                        <div class="reposo-card">
+                            <div class="inline-grid-reclutamiento">
+                                <div class="field-group-reclutamiento" style="flex: 2;">
+                                    <label>APELLIDOS Y NOMBRES (COMPLETOS) *</label>
+                                    <input type="text" class="form-input-reclutamiento" placeholder="Ej: Pérez Gómez, Juan" name="empleado_nombre" value="Juan Pérez">
+                                </div>
+                                <div class="field-group-reclutamiento">
+                                    <label>N.º DE C.I *</label>
+                                    <input type="text" class="form-input-reclutamiento" placeholder="V-12345678" name="empleado_cedula" value="V-12345678">
+                                </div>
+                                <div class="field-group-reclutamiento">
+                                    <label>FECHA DE NACIMIENTO</label>
+                                    <input type="date" class="form-input-reclutamiento" name="empleado_fecha_nac" value="1985-05-15">
+                                </div>
+                            </div>
+                            <div class="inline-grid-reclutamiento">
+                                <div class="field-group-reclutamiento">
+                                    <label>CARGO *</label>
+                                    <input type="text" class="form-input-reclutamiento" placeholder="Cargo" name="empleado_cargo" value="Administrador RRHH">
+                                </div>
+                                <div class="field-group-reclutamiento">
+                                    <label>DEPARTAMENTO *</label>
+                                    <input type="text" class="form-input-reclutamiento" placeholder="Departamento" name="empleado_departamento" value="Recursos Humanos">
+                                </div>
+                                <div class="field-group-reclutamiento">
+                                    <label>TELÉFONO DE CONTACTO</label>
+                                    <input type="text" class="form-input-reclutamiento" placeholder="0412-1234567" name="empleado_telefono" value="0412-1234567">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ================= DATOS DEL REPOSO ================= -->
+                        <h2 class="seccion-titulo-reclutamiento">DATOS DEL REPOSO MÉDICO</h2>
+                        <div class="reposo-card">
+                            <div class="inline-grid-reclutamiento">
+                                <div class="field-group-reclutamiento" style="flex: 1;">
+                                    <label>TIPO DE REPOSO *</label>
+                                    <select class="form-input-reclutamiento" name="tipo_reposo">
+                                        <option value="">Seleccione...</option>
+                                        <option value="Reposo Médico General" selected>Reposo Médico General</option>
+                                        <option value="Reposo por Enfermedad Laboral">Reposo por Enfermedad Laboral</option>
+                                        <option value="Reposo por Accidente Laboral">Reposo por Accidente Laboral</option>
+                                        <option value="Reposo por Cirugía">Reposo por Cirugía</option>
+                                        <option value="Reposo por Maternidad/Paternidad">Reposo por Maternidad/Paternidad</option>
+                                        <option value="Reposo por COVID-19">Reposo por COVID-19</option>
+                                    </select>
+                                </div>
+                                <div class="field-group-reclutamiento">
+                                    <label>NÚMERO DE REPOSO *</label>
+                                    <input type="text" class="form-input-reclutamiento" placeholder="N° de certificado" name="numero_reposo" value="R-2026-0842">
+                                </div>
+                                <div class="field-group-reclutamiento">
+                                    <label>NÚMERO DE EXPEDIENTE</label>
+                                    <input type="text" class="form-input-reclutamiento" placeholder="N° de expediente" name="numero_expediente" value="EXP-2026-1234">
+                                </div>
+                            </div>
+                            <div class="inline-grid-reclutamiento">
+                                <div class="field-group-reclutamiento">
+                                    <label>DIAGNÓSTICO *</label>
+                                    <textarea rows="2" style="width:100%;" class="form-input-reclutamiento" placeholder="Describa el diagnóstico médico" name="diagnostico">Infección respiratoria aguda (IRA) - Bronquitis aguda</textarea>
+                                </div>
+                            </div>
+                            <div class="inline-grid-reclutamiento">
+                                <div class="field-group-reclutamiento">
+                                    <label>FECHA DE EMISIÓN *</label>
+                                    <input type="date" class="form-input-reclutamiento" name="fecha_emision" value="2026-08-05">
+                                </div>
+                                <div class="field-group-reclutamiento">
+                                    <label>FECHA DE INICIO *</label>
+                                    <input type="date" class="form-input-reclutamiento" name="fecha_inicio" value="2026-08-05">
+                                </div>
+                                <div class="field-group-reclutamiento">
+                                    <label>FECHA DE CULMINACIÓN *</label>
+                                    <input type="date" class="form-input-reclutamiento" name="fecha_fin" value="2026-08-12">
+                                </div>
+                                <div class="field-group-reclutamiento">
+                                    <label>TOTAL DÍAS</label>
+                                    <input type="number" class="form-input-reclutamiento" placeholder="Días" name="total_dias" value="7" readonly style="background-color: #f3f4f6;">
+                                </div>
+                            </div>
+                            <div class="inline-grid-reclutamiento">
+                                <div class="field-group-reclutamiento">
+                                    <label>FECHA DE REINTEGRO *</label>
+                                    <input type="date" class="form-input-reclutamiento" name="fecha_reintegro" value="2026-08-13">
+                                </div>
+                                <div class="field-group-reclutamiento">
+                                    <label>¿REPOSO PRORROGABLE?</label>
+                                    <select class="form-input-reclutamiento" name="prorrogable">
+                                        <option value="No">No</option>
+                                        <option value="Sí (requiere nueva evaluación)" selected>Sí (requiere nueva evaluación)</option>
+                                    </select>
+                                </div>
+                                <div class="field-group-reclutamiento">
+                                    <label>ESTADO DEL REPOSO</label>
+                                    <select class="form-input-reclutamiento" name="estado_reposo">
+                                        <option value="Activo">Activo</option>
+                                        <option value="Completado" selected>Completado</option>
+                                        <option value="Vencido">Vencido</option>
+                                        <option value="En trámite">En trámite</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ================= DATOS DEL MÉDICO ================= -->
+                        <h2 class="seccion-titulo-reclutamiento">DATOS DEL MÉDICO / INSTITUCIÓN</h2>
+                        <div class="reposo-card">
+                            <div class="inline-grid-reclutamiento">
+                                <div class="field-group-reclutamiento" style="flex: 2;">
+                                    <label>NOMBRE DEL MÉDICO *</label>
+                                    <input type="text" class="form-input-reclutamiento" placeholder="Nombre completo" name="medico_nombre" value="Dr. Carlos Fernández">
+                                </div>
+                                <div class="field-group-reclutamiento">
+                                    <label>N° COLEGIATURA *</label>
+                                    <input type="text" class="form-input-reclutamiento" placeholder="N° de colegiatura" name="medico_colegiatura" value="MP-12345">
+                                </div>
+                                <div class="field-group-reclutamiento">
+                                    <label>ESPECIALIDAD</label>
+                                    <input type="text" class="form-input-reclutamiento" placeholder="Especialidad" name="medico_especialidad" value="Medicina Interna">
+                                </div>
+                            </div>
+                            <div class="inline-grid-reclutamiento">
+                                <div class="field-group-reclutamiento" style="flex: 2;">
+                                    <label>INSTITUCIÓN / CENTRO MÉDICO *</label>
+                                    <input type="text" class="form-input-reclutamiento" placeholder="Nombre del centro médico" name="medico_institucion" value="Hospital Clínico Universitario">
+                                </div>
+                                <div class="field-group-reclutamiento">
+                                    <label>TELÉFONO</label>
+                                    <input type="text" class="form-input-reclutamiento" placeholder="Teléfono" name="medico_telefono" value="0212-5551234">
+                                </div>
+                                <div class="field-group-reclutamiento">
+                                    <label>RIF / NIT</label>
+                                    <input type="text" class="form-input-reclutamiento" placeholder="RIF" name="medico_rif" value="J-12345678-0">
+                                </div>
+                            </div>
+                            <div class="inline-grid-reclutamiento">
+                                <div class="field-group-reclutamiento" style="flex: 1;">
+                                    <label>DIRECCIÓN</label>
+                                    <textarea rows="1" style="width:100%;" class="form-input-reclutamiento" placeholder="Dirección" name="medico_direccion">Av. Principal, Urb. Las Acacias, Caracas</textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ================= DOCUMENTOS ADJUNTOS ================= -->
+                        <h2 class="seccion-titulo-reclutamiento">📎 DOCUMENTOS ADJUNTOS</h2>
+                        <div class="recuadro-docs-reclutamiento">
+                            <div class="check-group-reclutamiento">
+                                <span class="check-item-reclutamiento"><input type="checkbox" class="checkbox-reclutamiento" name="doc_reposo" checked> Reposo médico original (escaneado)</span>
+                                <span class="check-item-reclutamiento"><input type="checkbox" class="checkbox-reclutamiento" name="doc_lab" checked> Resultados de laboratorio / estudios</span>
+                                <span class="check-item-reclutamiento"><input type="checkbox" class="checkbox-reclutamiento" name="doc_historia"> Historia clínica resumida</span>
+                                <span class="check-item-reclutamiento"><input type="checkbox" class="checkbox-reclutamiento" name="doc_referencia"> Referencia médica</span>
+                                <span class="check-item-reclutamiento"><input type="checkbox" class="checkbox-reclutamiento" name="doc_accidente"> Informe de accidente (si aplica)</span>
+                            </div>
+                            <div style="margin-top: 10px;">
+                                <label>OBSERVACIONES DE DOCUMENTOS:</label>
+                                <textarea rows="2" style="width:100%;" class="form-input-reclutamiento" placeholder="Observaciones sobre la documentación adjunta" name="doc_observaciones">Se anexa copia del reposo médico original y resultados de laboratorio.</textarea>
+                            </div>
+                        </div>
+
+                        <!-- ================= AUTORIZACIONES Y FIRMAS ================= -->
+                        <h2 class="seccion-titulo-reclutamiento">AUTORIZACIONES Y FIRMAS</h2>
+                        <div class="firma-area-reclutamiento" style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between;">
+                            <div style="flex: 1; text-align: center; border-right: 1px solid #ddd; padding-right: 10px;">
+                                <strong>FIRMA DEL TRABAJADOR</strong><br><br>
+                                _________________________<br>
+                                <span style="font-size:0.7rem;">NOMBRE: <input type="text" class="form-input-reclutamiento" placeholder="Firma" style="width: 80%;" name="firma_trabajador" value="Juan Pérez"></span>
+                            </div>
+                            <div style="flex: 1; text-align: center; border-right: 1px solid #ddd; padding-right: 10px;">
+                                <strong>APROBACIÓN DEL MÉDICO OCUPACIONAL</strong><br><br>
+                                _________________________<br>
+                                <span style="font-size:0.7rem;">NOMBRE: <input type="text" class="form-input-reclutamiento" placeholder="Firma" style="width: 80%;" name="firma_medico" value="Dra. María López"></span>
+                            </div>
+                            <div style="flex: 1; text-align: center;">
+                                <strong>RECIBIDO POR (RRHH)</strong><br><br>
+                                _________________________<br>
+                                <span style="font-size:0.7rem;">NOMBRE: <input type="text" class="form-input-reclutamiento" placeholder="Firma" style="width: 80%;" name="firma_rrhh" value="Lic. Roberto Díaz"></span>
+                            </div>
+                        </div>
+
+                        <!-- ================= SOLO PARA USO DE RRHH ================= -->
+                        <div class="recuadro-docs-reclutamiento" style="margin-top: 1.5rem;">
+                            <h3 style="margin-top:0;">SOLO PARA USO DE LA DIRECCIÓN DE RECURSOS HUMANOS</h3>
+                            <div class="inline-grid-reclutamiento" style="gap: 15px;">
+                                <div class="field-group-reclutamiento" style="flex: 2;">
+                                    <label>FECHA DE RECEPCIÓN</label>
+                                    <input type="date" class="form-input-reclutamiento" name="rrhh_fecha_recepcion" value="2026-08-05">
+                                </div>
+                                <div class="field-group-reclutamiento" style="flex: 2;">
+                                    <label>FUNCIONARIO QUE RECIBE</label>
+                                    <input type="text" class="form-input-reclutamiento" placeholder="Nombre" name="rrhh_funcionario" value="Lic. Ana Martínez">
+                                </div>
+                                <div class="field-group-reclutamiento" style="flex: 1;">
+                                    <label>REGISTRADO EN SISTEMA</label>
+                                    <select class="form-input-reclutamiento" name="rrhh_registrado">
+                                        <option value="Sí">Sí</option>
+                                        <option value="No" selected>No</option>
+                                    </select>
+                                </div>
+                                <div class="field-group-reclutamiento" style="flex: 1;">
+                                    <label>PAGO DE INCAPACIDAD</label>
+                                    <select class="form-input-reclutamiento" name="rrhh_pago">
+                                        <option value="Pendiente">Pendiente</option>
+                                        <option value="Procesado" selected>Procesado</option>
+                                        <option value="Rechazado">Rechazado</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="inline-grid-reclutamiento" style="margin-top: 10px;">
+                                <div class="field-group-reclutamiento" style="flex: 1;">
+                                    <label>OBSERVACIONES DE RRHH</label>
+                                    <textarea rows="2" style="width:100%;" class="form-input-reclutamiento" placeholder="Observaciones..." name="rrhh_observaciones">Reposo validado por el médico ocupacional. Se procede al registro en el sistema de control de ausencias.</textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- ================= HISTORIAL DE REPOSOS ANTERIORES ================= -->
+                        <h2 class="seccion-titulo-reclutamiento">HISTORIAL DE REPOSOS ANTERIORES</h2>
+                        <div style="overflow-x: auto;">
+                            <table class="data-table-reclutamiento">
+                                <thead>
+                                    <tr>
+                                        <th>FECHA</th>
+                                        <th>DIAGNÓSTICO</th>
+                                        <th>DÍAS</th>
+                                        <th>MÉDICO</th>
+                                        <th>ESTADO</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>2025-03-10</td>
+                                        <td>Influenza estacional</td>
+                                        <td>5</td>
+                                        <td>Dr. Pérez</td>
+                                        <td><span class="badge badge-active">Completado</span></td>
+                                    </tr>
+                                    <tr>
+                                        <td>2024-11-20</td>
+                                        <td>Fractura de tobillo</td>
+                                        <td>15</td>
+                                        <td>Dra. Gómez</td>
+                                        <td><span class="badge badge-active">Completado</span></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- Botones -->
+                        <div class="botonera-reclutamiento" style="margin-top: 1.5rem;">
+                            <button type="button" class="btn btn-primary">🖨️ Imprimir / Guardar PDF</button>
+                            <button type="submit" class="btn btn-success">💾 Guardar Solicitud de Reposo</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="validaciones.js"></script>
+</body>
+</html>

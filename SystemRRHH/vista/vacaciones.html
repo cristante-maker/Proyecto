@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vacaciones - Sistema RRHH</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        .seccion-titulo-reclutamiento {
+            background-color: #2c3e66;
+            color: white;
+            padding: 0.4rem 1rem;
+            font-size: 1rem;
+            margin: 1rem 0;
+            border-radius: 8px 8px 0 8px;
+            display: inline-block;
+        }
+    </style>
+</head>
+<body>
+    <div class="app-container">
+        <nav class="sidebar">
+            <h2>Sistema de Gestión</h2>
+            <ul class="menu-list">
+                <li class="menu-item"><a href="dashboard.html"><span class="icon"><img src="Iconos/Dashboard.png" alt="Dashboard" class="menu-icon"></span> Administración</a></li>
+                <li class="menu-item"><a href="maestros.html"><span class="icon"><img src="Iconos/Maestros.png" alt="Maestros" class="menu-icon"></span> Maestros</a></li>
+                <li class="menu-item"><a href="reclutamiento.html"><span class="icon"><img src="Iconos/Reclutamiento.png" alt="Reclutamiento" class="menu-icon"></span> Reclutamiento</a></li>
+                <li class="menu-item"><a href="contratacion.html"><span class="icon"><img src="Iconos/Contratacion.png" alt="Contratación" class="menu-icon"></span> Contratación</a></li>
+                <li class="menu-item"><a href="asistencia.html"><span class="icon"><img src="Iconos/Asistencia.png" alt="Asistencia" class="menu-icon"></span> Asistencia</a></li>
+                <li class="menu-item active"><a href="vacaciones.html"><span class="icon"><img src="Iconos/Vacaciones.png" alt="Vacaciones" class="menu-icon"></span> Vacaciones</a></li>
+                <li class="menu-item"><a href="reposos.html"><span class="icon"><img src="Iconos/Reposo.png" alt="Reposos" class="menu-icon"></span> Reposos</a></li>
+                <li class="menu-item"><a href="permisos.html"><span class="icon"><img src="Iconos/Permiso.png" alt="Permisos" class="menu-icon"></span> Permisos</a></li>
+                <li class="menu-item"><a href="configuracion.html"><span class="icon"><img src="Iconos/Configuracion.png" alt="Configuración" class="menu-icon"></span> Configuración</a></li>
+            </ul>
+        </nav>
+
+        <main class="main-content">
+            <header class="header">
+                <h1>Solicitud y Aprobación de Vacaciones</h1>
+                <div class="user-profile">
+                    <span>Juan Pérez</span>
+                    <div class="user-avatar">JP</div>
+                </div>
+            </header>
+
+            <div class="page-header">
+                <p>Gestión de solicitudes de vacaciones del personal</p>
+            </div>
+
+            <div id="error-general"></div>
+
+            <div style="display: flex; justify-content: flex-end; gap: 10px; margin-bottom: 20px;">
+                <button type="reset" class="btn btn-secondary" form="form-vacaciones">🧹 Limpiar campos</button>
+                <button type="button" class="btn btn-primary">➕ Nueva Solicitud</button>
+            </div>
+
+            <div class="section-card" style="padding: 1.5rem;">
+                <div class="cv-container-reclutamiento">
+                    <div class="titulo-principal-reclutamiento">SOLICITUD Y APROBACIÓN DE VACACIONES</div>
+                    <div style="text-align: center; margin-bottom: 1rem; font-size: 0.8rem; color: #334155;">
+                        REPÚBLICA BOLIVARIANA DE VENEZUELA<br>
+                        GOBIERNO BOLIVARIANO DEL ESTADO YARACUY<br>
+                        DIRECCIÓN DE RECURSOS HUMANOS
+                    </div>
+
+                    <form id="form-vacaciones">
+
+                        <!-- FECHA DE SOLICITUD -->
+                        <div style="display: flex; justify-content: flex-end; margin-bottom: 20px;">
+                            <div class="field-group-reclutamiento" style="flex: 0 0 250px;">
+                                <label>FECHA DE LA SOLICITUD *</label>
+                                <input type="date" class="form-input-reclutamiento" name="fecha_solicitud" value="2026-08-10">
+                            </div>
+                        </div>
+
+                        <!-- DATOS DEL TRABAJADOR -->
+                        <h2 class="seccion-titulo-reclutamiento">👤 DATOS DEL TRABAJADOR</h2>
+                        <div style="overflow-x: auto;">
+                            <table class="data-table-reclutamiento">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 35%;">NOMBRES Y APELLIDOS (COMPLETOS) *</th>
+                                        <th style="width: 25%;">N.º DE C.I. *</th>
+                                        <th style="width: 40%;">DENOMINACIÓN DEL CARGO *</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="text" class="form-input-reclutamiento" placeholder="Ej: Pérez Gómez, Juan" name="empleado_nombre" value="Juan Pérez"></td>
+                                        <td><input type="text" class="form-input-reclutamiento" placeholder="V-12345678" name="empleado_cedula" value="V-12345678"></td>
+                                        <td><input type="text" class="form-input-reclutamiento" placeholder="Secretaria Ejecutiva / Administrativo" name="empleado_cargo" value="Administrador RRHH"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- TIPO DE PERSONAL Y FECHAS -->
+                        <div style="overflow-x: auto;">
+                            <table class="data-table-reclutamiento">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 30%;">TIPO DE PERSONAL<br>(SELECCIONE CON UNA "X")</th>
+                                        <th style="width: 20%;">FECHA DE INGRESO</th>
+                                        <th style="width: 25%;">FECHA DE ANTIGÜEDAD</th>
+                                        <th style="width: 25%;">AÑOS DE SERVICIO</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td style="text-align: left; padding: 10px;">
+                                            <div class="check-item-reclutamiento" style="display: inline-flex; margin-right: 15px;">
+                                                <strong>EMPLEADO:</strong> 
+                                                <input type="checkbox" class="checkbox-reclutamiento" style="margin-left: 5px;" name="tipo_empleado_fijo" checked> FIJO 
+                                                <input type="checkbox" class="checkbox-reclutamiento" style="margin-left: 10px;" name="tipo_empleado_contratado"> CONTRATADO
+                                            </div>
+                                            <div class="check-item-reclutamiento" style="display: inline-flex;">
+                                                <strong>OBRERO:</strong> 
+                                                <input type="checkbox" class="checkbox-reclutamiento" style="margin-left: 5px;" name="tipo_obrero_fijo"> FIJO 
+                                                <input type="checkbox" class="checkbox-reclutamiento" style="margin-left: 10px;" name="tipo_obrero_contratado"> CONTRATADO
+                                            </div>
+                                        </td>
+                                        <td><input type="date" class="form-input-reclutamiento" name="fecha_ingreso" value="2020-01-15"></td>
+                                        <td><input type="date" class="form-input-reclutamiento" name="fecha_antiguedad" value="2020-01-15"></td>
+                                        <td><input type="number" class="form-input-reclutamiento" placeholder="Años" style="width: 80px;" name="anios_servicio" value="6"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- VACACIONES PENDIENTES Y A DISFRUTAR -->
+                        <h2 class="seccion-titulo-reclutamiento">DETALLE DE VACACIONES</h2>
+                        <div style="overflow-x: auto;">
+                            <table class="data-table-reclutamiento">
+                                <thead>
+                                    <tr>
+                                        <th colspan="3">VACACIONES PENDIENTES</th>
+                                        <th colspan="3">VACACIONES A DISFRUTAR</th>
+                                    </tr>
+                                    <tr>
+                                        <th style="width: 15%;">PERÍODO</th>
+                                        <th style="width: 15%;">QUINQUENIO</th>
+                                        <th style="width: 20%;">Nº DE DÍAS</th>
+                                        <th style="width: 15%;">PERÍODO</th>
+                                        <th style="width: 15%;">QUINQUENIO</th>
+                                        <th style="width: 20%;">Nº DE DÍAS</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="vacaciones_tabla_body">
+                                    <tr id="vacaciones_fila_1">
+                                        <td><input type="text" class="form-input-reclutamiento" placeholder="2022-2023" style="width: 100%;" name="vac_pendiente1_periodo" value="2022-2023"></td>
+                                        <td><input type="text" class="form-input-reclutamiento" placeholder="1er" style="width: 100%;" name="vac_pendiente1_quinquenio" value="1er"></td>
+                                        <td><input type="text" class="form-input-reclutamiento" placeholder="15" style="width: 100%;" name="vac_pendiente1_dias" value="15"></td>
+                                        <td><input type="text" class="form-input-reclutamiento" placeholder="2024-2025" style="width: 100%;" name="vac_disfrutar1_periodo" value="2024-2025"></td>
+                                        <td><input type="text" class="form-input-reclutamiento" placeholder="2do" style="width: 100%;" name="vac_disfrutar1_quinquenio" value="2do"></td>
+                                        <td><input type="text" class="form-input-reclutamiento" placeholder="15" style="width: 100%;" name="vac_disfrutar1_dias" value="15"></td>
+                                    </tr>
+                                    <tr id="vacaciones_fila_2">
+                                        <td><input type="text" class="form-input-reclutamiento" placeholder="2023-2024" style="width: 100%;" name="vac_pendiente2_periodo" value="2023-2024"></td>
+                                        <td><input type="text" class="form-input-reclutamiento" placeholder="1er" style="width: 100%;" name="vac_pendiente2_quinquenio" value="1er"></td>
+                                        <td><input type="text" class="form-input-reclutamiento" placeholder="15" style="width: 100%;" name="vac_pendiente2_dias" value="15"></td>
+                                        <td><input type="text" class="form-input-reclutamiento" placeholder="2025-2026" style="width: 100%;" name="vac_disfrutar2_periodo" value="2025-2026"></td>
+                                        <td><input type="text" class="form-input-reclutamiento" placeholder="3er" style="width: 100%;" name="vac_disfrutar2_quinquenio" value="3er"></td>
+                                        <td><input type="text" class="form-input-reclutamiento" placeholder="15" style="width: 100%;" name="vac_disfrutar2_dias" value="15"></td>
+                                    </tr>
+                                    <tr id="vacaciones_fila_3">
+                                        <td><input type="text" class="form-input-reclutamiento" placeholder="2024-2025" style="width: 100%;" name="vac_pendiente3_periodo" value="2024-2025"></td>
+                                        <td><input type="text" class="form-input-reclutamiento" placeholder="2do" style="width: 100%;" name="vac_pendiente3_quinquenio" value="2do"></td>
+                                        <td><input type="text" class="form-input-reclutamiento" placeholder="15" style="width: 100%;" name="vac_pendiente3_dias" value="15"></td>
+                                        <td><input type="text" class="form-input-reclutamiento" placeholder="2026-2027" style="width: 100%;" name="vac_disfrutar3_periodo" value="2026-2027"></td>
+                                        <td><input type="text" class="form-input-reclutamiento" placeholder="4to" style="width: 100%;" name="vac_disfrutar3_quinquenio" value="4to"></td>
+                                        <td><input type="text" class="form-input-reclutamiento" placeholder="15" style="width: 100%;" name="vac_disfrutar3_dias" value="15"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- AGREGAR MÁS FILAS -->
+                        <div style="text-align: right; margin: 10px 0;">
+                            <button type="button" class="btn btn-sm" style="background-color: #3498db; color: white; padding: 5px 15px;">➕ Agregar fila</button>
+                        </div>
+
+                        <!-- OBSERVACIONES -->
+                        <div style="margin-top: 15px;">
+                            <div class="field-group-reclutamiento">
+                                <label>OBSERVACIONES:</label>
+                                <textarea rows="2" style="width:100%;" class="form-input-reclutamiento" placeholder="Observaciones o detalles adicionales..." name="observaciones">El trabajador solicita disfrutar de sus vacaciones correspondientes al período 2024-2025, acumuladas más las pendientes del período anterior.</textarea>
+                            </div>
+                        </div>
+
+                        <!-- DESARROLLO DE LAS VACACIONES -->
+                        <h2 class="seccion-titulo-reclutamiento">DESARROLLO DE LAS VACACIONES</h2>
+                        <div style="overflow-x: auto;">
+                            <table class="data-table-reclutamiento">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 20%;">DÍAS HÁBILES A DISFRUTAR *</th>
+                                        <th style="width: 80%;">FECHAS</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td><input type="number" class="form-input-reclutamiento" placeholder="Días totales" style="width: 100%;" name="dias_disfrutar" value="15" min="1"></td>
+                                        <td style="text-align: left; padding: 10px;">
+                                            <div class="inline-grid-reclutamiento" style="margin: 0;">
+                                                <div class="field-group-reclutamiento">
+                                                    <label>FECHA DE INICIO *</label>
+                                                    <input type="date" class="form-input-reclutamiento" name="fecha_inicio" value="2026-09-01">
+                                                </div>
+                                                <div class="field-group-reclutamiento">
+                                                    <label>FECHA DE CULMINACIÓN *</label>
+                                                    <input type="date" class="form-input-reclutamiento" name="fecha_fin" value="2026-09-19">
+                                                </div>
+                                                <div class="field-group-reclutamiento">
+                                                    <label>FECHA DE REINTEGRO *</label>
+                                                    <input type="date" class="form-input-reclutamiento" name="fecha_reintegro" value="2026-09-22">
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- FIRMAS -->
+                        <h2 class="seccion-titulo-reclutamiento">FIRMAS DE AUTORIZACIÓN</h2>
+                        <div class="firma-area-reclutamiento" style="display: flex; flex-wrap: wrap; gap: 1rem; justify-content: space-between;">
+                            <div style="flex: 1; text-align: center; border-right: 1px solid #ddd; padding-right: 10px;">
+                                <strong>FIRMA DEL SOLICITANTE</strong><br><br>
+                                _________________________<br>
+                                <span style="font-size:0.7rem;">NOMBRE: <input type="text" class="form-input-reclutamiento" placeholder="Firma" style="width: 80%;" name="firma_solicitante" value="Juan Pérez"></span>
+                            </div>
+                            <div style="flex: 1; text-align: center;">
+                                <strong>FIRMA DEL SUPERIOR INMEDIATO</strong><br><br>
+                                _________________________<br>
+                                <span style="font-size:0.7rem;">NOMBRE: <input type="text" class="form-input-reclutamiento" placeholder="Firma" style="width: 80%;" name="firma_superior" value="Lic. Ana Martínez"></span>
+                            </div>
+                        </div>
+
+                        <!-- SOLO PARA USO DE RRHH -->
+                        <div class="recuadro-docs-reclutamiento" style="margin-top: 1.5rem;">
+                            <h3 style="margin-top:0;">SOLO PARA USO DE LA DIRECCIÓN DE RECURSOS HUMANOS</h3>
+                            <div class="inline-grid-reclutamiento" style="gap: 15px;">
+                                <div class="field-group-reclutamiento" style="flex: 2;">
+                                    <label>FECHA DE RECEPCIÓN Y FIRMA DEL FUNCIONARIO</label>
+                                    <div class="inline-grid-reclutamiento" style="margin: 5px 0;">
+                                        <input type="date" class="form-input-reclutamiento" style="flex: 0 0 150px;" name="rrhh_fecha" value="2026-08-10">
+                                        <input type="text" class="form-input-reclutamiento" placeholder="Nombre y Firma" style="flex: 1;" name="rrhh_firma" value="Lic. Roberto Díaz">
+                                    </div>
+                                </div>
+                                <div class="field-group-reclutamiento" style="flex: 1;">
+                                    <label>AUTORIZACIÓN PARA PAGO DE BONO VACACIONAL</label>
+                                    <input type="text" class="form-input-reclutamiento" placeholder="Firma / Sello" name="rrhh_bono" value="Aprobado - Sello RRHH">
+                                </div>
+                                <div class="field-group-reclutamiento" style="flex: 1;">
+                                    <label>PROCESADO EN UNIDAD DE NÓMINA</label>
+                                    <input type="text" class="form-input-reclutamiento" placeholder="Firma / Sello" name="rrhh_nomina" value="Procesado - 10/08/2026">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- PIE DE PÁGINA -->
+                        <div style="text-align: center; font-size: 0.65rem; color: #475569; margin-top: 15px; border-top: 1px solid #cbd5e1; padding-top: 10px;">
+                            SE IMPRIMEN TRES (03) EJEMPLARES: 1- TRABAJADOR O TRABAJADORA, 1- EXPEDIENTE ADM., 1- SUPERIOR INMEDIATO
+                        </div>
+
+                        <!-- Botones -->
+                        <div class="botonera-reclutamiento" style="margin-top: 1.5rem;">
+                            <button type="button" class="btn btn-primary">🖨️ Imprimir / Guardar PDF</button>
+                            <button type="submit" class="btn btn-success">💾 Guardar Solicitud</button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script src="validaciones.js"></script>
+</body>
+</html>
